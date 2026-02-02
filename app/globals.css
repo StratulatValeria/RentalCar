@@ -1,0 +1,60 @@
+:root {
+  --main: #101828;
+  --gray: #8d929a;
+  --gray-light: #dadde1;
+  --badges: #f2f4f7;
+  --inputs: #f7f7f7;
+  --white: #fff;
+  --button: #3470ff;
+  --button-hover: #0b44cd;
+  --font-family: var(--font-manrope), sans-serif;
+  --second-family: var(--font-inter), sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--main);
+  background-color: var(--white);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

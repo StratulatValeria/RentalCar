@@ -1,0 +1,63 @@
+.hero {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/Picture.webp");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroContent {
+  text-align: center;
+  color: var(--white);
+  margin-top: 436px;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.subtitle {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}
+
+.btn {
+  /* border-radius: 12px;
+  padding: 12px 99px;
+  width: 276px;
+  height: 44px;
+  background: var(--button); */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--button);
+  border-radius: 12px;
+  padding: 12px 50px;
+  min-width: 276px;
+  color: var(--white);
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--button-hover);
+  transition: background 0.3s ease;
+}
