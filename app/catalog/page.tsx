@@ -2,6 +2,10 @@
 import Select, { components, DropdownIndicatorProps } from "react-select";
 import css from "./page.module.css";
 import { StylesConfig, GroupBase } from "react-select";
+import { VehicleCard } from "@/components/VehicleCard/VehicleCard";
+import { useEffect } from "react";
+import { useVehicleStore } from "@/store/useVehicleStore";
+
 
 interface SelectOption {
   value: string;
@@ -19,6 +23,7 @@ const brands: SelectOption[] = [
   { value: "gmc", label: "GMC" },
   { value: "hummer", label: "HUMMER" },
 ];
+
 const prices: SelectOption[] = [];
 for (let i = 30; i <= 150; i += 10) {
   prices.push({ value: i.toString(), label: i.toString() });
@@ -28,12 +33,15 @@ const customStyles: StylesConfig<
   false,
   GroupBase<SelectOption>
 > = {
-  control: (base) => ({
+  control: (base, state) => ({
     ...base,
     backgroundColor: "#F7F7FB",
     border: "none",
     borderRadius: "14px",
-    height: "48px",
+    height: "44px",
+    width: String(state.selectProps.placeholder).includes("price")
+      ? "196px"
+      : "204px",
     boxShadow: "none",
     cursor: "pointer",
     display: "flex",
@@ -41,7 +49,11 @@ const customStyles: StylesConfig<
   }),
   valueContainer: (base) => ({
     ...base,
-    padding: "0 8px",
+    padding: "0",
+    margin: "0",
+    whiteSpace: "nowrap",
+    display: "flex",
+    overflow: "hidden",
   }),
   placeholder: (base) => ({
     ...base,
@@ -111,10 +123,22 @@ const CustomIndicator = (
 };
 
 export default function CatalogPage() {
+  const { vehicles, isLoading, hasMore, fetchVehicles, setFilter} =
+    useVehicleStore();
+
+  useEffect(() => {
+    fetchVehicles(true);
+  }, [fetchVehicles]);
+
+  const handlSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchVehicles(true);
+  };
+
   return (
     <section className={css.catalogSection}>
       <div className={css.container}>
-        <form className={css.filterForm}>
+        <form className={css.filterForm} onSubmit={handlSearch}>
           <div className={css.filterGroup}>
             <label className={css.label}>Car brand</label>
 
@@ -123,10 +147,10 @@ export default function CatalogPage() {
               placeholder="Choose a brand"
               classNamePrefix="custom-select"
               styles={customStyles}
-              components={{
-                DropdownIndicator: CustomIndicator,
-                IndicatorSeparator: () => null,
-              }}
+              onChange={(opt) => setFilter("brand", opt?.value || "")}
+             components={{ DropdownIndicator:
+               CustomIndicator,
+               IndicatorSeparator: () => null }}
             />
           </div>
           {/* cena */}
@@ -137,6 +161,10 @@ export default function CatalogPage() {
               placeholder="Choose a price"
               classNamePrefix="custom-select"
               styles={customStyles}
+              onChange={(opt) => setFilter("price", opt?.value || "")}
+              formatOptionLabel={(option, { context }) =>
+              context === "value" ? `To $${option.label}` : option.label
+              }
               components={{
                 DropdownIndicator: CustomIndicator,
                 IndicatorSeparator: () => null,
@@ -149,11 +177,16 @@ export default function CatalogPage() {
             <div className={css.mileageInputs}>
               <div className={css.inputWrapper}>
                 <span className={css.inputLabel}>From</span>
-                <input type="text" className={css.inputLeft} />
+                <input type="text" 
+                className={css.inputLeft}
+                onChange={(e) => setFilter("mileageFrom", e.target.value)} 
+                />
               </div>
               <div className={css.inputWrapper}>
                 <span className={css.inputLabel}>To</span>
-                <input type="text" className={css.inputRight} />
+                <input type="text" className={css.inputRight} 
+                onChange={(e) => setFilter("mileageTo", e.target.value)}
+                />
               </div>
             </div>
           </div>
@@ -162,6 +195,23 @@ export default function CatalogPage() {
             Search
           </button>
         </form>
+        <div className={css.grid}>
+        {vehicles && Array.isArray(vehicles) && vehicles.map((car) => (
+          <VehicleCard key={car.id} vehicle={car} />
+        ))}
+      </div>
+
+      {isLoading && <div className={css.loader}>Завантаження...</div>}
+      
+      {hasMore && !isLoading && vehicles?.length > 0 && (
+        <button 
+          type="button" 
+          className={css.loadMoreBtn} 
+          onClick={() => fetchVehicles(false)}
+        >
+          Load More
+        </button>
+      )}
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 .mileageInputs {
   display: flex;
+  align-items: center;
 }
 .inputWrapper {
   position: relative;
@@ -9,8 +10,8 @@
 
 .inputLeft,
 .inputRight {
-  width: 180px;
-  height: 48px;
+  width: 160px;
+  height: 44px;
   background: var(--inputs);
   border: none;
   outline: none;
@@ -19,8 +20,16 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--main);
-  padding-left: 75px;
+  padding-left: 70px;
   padding-right: 15px;
+}
+
+.custom-select {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
 }
 
 .inputLeft {
@@ -33,9 +42,13 @@
 }
 .inputLabel {
   position: absolute;
-  left: 18px;
-  font-size: 18px;
+  left: 24px;
+  font-size: 16px;
   color: var(--main);
+  font-family: var(--font-family);
+  font-weight: 500;
+  line-height: 125%;
+  pointer-events: none;
 }
 
 .catalogSection {
@@ -50,8 +63,11 @@
 }
 
 .label {
-  font-size: 14px;
-  color: #8a8a89;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
 }
 
 .filterForm {
@@ -97,3 +113,12 @@
   background: var(--button-hover);
   transition: background 0.3s ease;
 }
+/* тест */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 29px;
+  row-gap: 50px;
+  margin-top: 50px;
+}
+/*  */

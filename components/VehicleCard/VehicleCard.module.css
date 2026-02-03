@@ -1,0 +1,98 @@
+.card {
+  width: 276px;
+  height: 424px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 14px;
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+.accent {
+  color: var(--button);
+}
+
+.price {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+.tags {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tags span {
+  display: flex;
+  align-items: center;
+}
+
+.tags span:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: var(--gray-light);
+  margin-left: 6px;
+}
+
+.btn {
+  width: 276px;
+  height: 44px;
+  background: var(--button);
+
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--button-hover);
+}
+.imageWrapper {
+  position: relative; 
+  width: 100%;
+  height: 248px; 
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.favoriteBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10; 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
