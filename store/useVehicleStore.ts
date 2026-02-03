@@ -1,9 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Vehicle } from "@/types/vehicle";
-import { getVehicles, VehicleFilters } from "@/lib/vehicleService";
+import {
+  getVehicles,
+  VehicleFilters,
+  getFilterMetadata,
+} from "@/lib/vehicleService";
 
 interface VehicleState {
+  allBrands: string[];
+  maxPriceInRange: number;
   vehicles: Vehicle[];
   favorites: string[];
   isLoading: boolean;
@@ -12,6 +18,7 @@ interface VehicleState {
   filters: VehicleFilters;
 
   fetchVehicles: (isNewSearch?: boolean) => Promise<void>;
+  fetchFilterMetadata: () => Promise<void>;
   setFilter: (filterName: string, value: string) => void;
   toggleFavorite: (vehicleId: string) => void;
   resetVehicles: () => void;
@@ -22,6 +29,8 @@ export const useVehicleStore = create<VehicleState>()(
     (set, get) => ({
       vehicles: [],
       favorites: [],
+      allBrands: [],
+      maxPriceInRange: 150,
       isLoading: false,
       page: 1,
       hasMore: true,
@@ -31,6 +40,20 @@ export const useVehicleStore = create<VehicleState>()(
         mileageFrom: "",
         mileageTo: "",
       } as VehicleFilters,
+      fetchFilterMetadata: async () => {
+        try {
+          const { brands, maxPrice } = await getFilterMetadata();
+
+          set({
+            allBrands: brands,
+            maxPriceInRange: maxPrice,
+          });
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error("Metadata error:", error.message);
+          }
+        }
+      },
       setFilter: (name, value) =>
         set((state) => ({
           filters: { ...state.filters, [name]: value },
@@ -51,17 +74,34 @@ export const useVehicleStore = create<VehicleState>()(
         }
 
         set({ isLoading: true });
+
         try {
-          const response = await getVehicles(get().page, get().filters);
+          const { filters, page } = get();
+
+          const sanitizedFilters = {
+            ...filters,
+            mileageFrom:
+              filters.mileageFrom?.toString().replace(/\s/g, "") || "",
+            mileageTo: filters.mileageTo?.toString().replace(/\s/g, "") || "",
+          };
+
+          const response = await getVehicles(page, sanitizedFilters);
+
           const fetchedCars = Array.isArray(response.cars) ? response.cars : [];
           const total = response.totalCars || 0;
-         set((state) => ({
-            vehicles: isNewSearch ? fetchedCars : [...state.vehicles, ...fetchedCars],
+
+          set((state) => ({
+            vehicles: isNewSearch
+              ? fetchedCars
+              : [...state.vehicles, ...fetchedCars],
             page: state.page + 1,
-            hasMore: (isNewSearch ? fetchedCars.length : state.vehicles.length + fetchedCars.length) < total,
+            hasMore:
+              (isNewSearch
+                ? fetchedCars.length
+                : state.vehicles.length + fetchedCars.length) < total,
           }));
         } catch (error) {
-          console.error(error);
+          console.error("Помилка завантаження:", error);
         } finally {
           set({ isLoading: false });
         }

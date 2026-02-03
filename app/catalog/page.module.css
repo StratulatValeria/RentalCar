@@ -1,119 +1,14 @@
-.mileageInputs {
-  display: flex;
-  align-items: center;
-}
-.inputWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.inputLeft,
-.inputRight {
-  width: 160px;
-  height: 44px;
-  background: var(--inputs);
-  border: none;
-  outline: none;
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-  padding-left: 70px;
-  padding-right: 15px;
-}
-
-.custom-select {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 125%;
-  color: var(--main);
-}
-
-.inputLeft {
-  border-radius: 14px 0 0 14px;
-  border-right: 1px solid rgba(138, 138, 137, 0.2);
-}
-
-.inputRight {
-  border-radius: 0 14px 14px 0;
-}
-.inputLabel {
-  position: absolute;
-  left: 24px;
-  font-size: 16px;
-  color: var(--main);
-  font-family: var(--font-family);
-  font-weight: 500;
-  line-height: 125%;
-  pointer-events: none;
-}
-
 .catalogSection {
   padding-top: 150px;
   display: flex;
   justify-content: center;
 }
-.filterGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
-.label {
-  font-family: var(--font-family);
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 133%;
-  color: var(--gray);
+.container {
+  width: 100%;
+  max-width: 1216px;
+  padding: 0 15px;
 }
-
-.filterForm {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 50px;
-}
-.selectBrand,
-.selectPrice {
-  height: 48px;
-  background-color: var(--inputs);
-  border: none;
-  border-radius: 14px;
-  padding: 0 18px;
-  font-size: 18px;
-  color: var(--main);
-  outline: none;
-  cursor: pointer;
-}
-.selectBrand {
-  width: 224px;
-}
-.selectPrice {
-  width: 125px;
-}
-
-.searchBtn {
-  height: 48px;
-  padding: 14px 44px;
-  background-color: var(--button);
-  color: var(--white);
-  border-radius: 12px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.searchBtn:hover {
-  background: var(--button-hover);
-  transition: background 0.3s ease;
-}
-/* тест */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -121,4 +16,28 @@
   row-gap: 50px;
   margin-top: 50px;
 }
-/*  */
+
+.loadMoreBtn {
+  background: none;
+  border: 1px solid var(--button);
+  border-radius: 12px;
+  width: 156px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+
+  cursor: pointer;
+  transition: color 250ms ease;
+  margin: 60px auto;
+}
+
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  color: var(--button-hover);
+  transition: color 250ms ease;
+}
