@@ -69,6 +69,7 @@ export const useVehicleStore = create<VehicleState>()(
       resetVehicles: () => set({ vehicles: [], page: 1, hasMore: true }),
 
       fetchVehicles: async (isNewSearch = false) => {
+        const nextPage = isNewSearch ? 1 : get().page;
         if (isNewSearch) {
           set({ vehicles: [], page: 1, hasMore: true });
         }
@@ -76,7 +77,7 @@ export const useVehicleStore = create<VehicleState>()(
         set({ isLoading: true });
 
         try {
-          const { filters, page } = get();
+          const { filters } = get();
 
           const sanitizedFilters = {
             ...filters,
@@ -85,21 +86,22 @@ export const useVehicleStore = create<VehicleState>()(
             mileageTo: filters.mileageTo?.toString().replace(/\s/g, "") || "",
           };
 
-          const response = await getVehicles(page, sanitizedFilters);
+          const response = await getVehicles(nextPage, sanitizedFilters);
 
           const fetchedCars = Array.isArray(response.cars) ? response.cars : [];
           const total = response.totalCars || 0;
 
-          set((state) => ({
-            vehicles: isNewSearch
+          set((state) => {
+            const newVehicles = isNewSearch
               ? fetchedCars
-              : [...state.vehicles, ...fetchedCars],
-            page: state.page + 1,
-            hasMore:
-              (isNewSearch
-                ? fetchedCars.length
-                : state.vehicles.length + fetchedCars.length) < total,
-          }));
+              : [...state.vehicles, ...fetchedCars];
+
+            return {
+              vehicles: newVehicles,
+              page: nextPage + 1,
+              hasMore: newVehicles.length < total,
+            };
+          });
         } catch (error) {
           console.error("Помилка завантаження:", error);
         } finally {

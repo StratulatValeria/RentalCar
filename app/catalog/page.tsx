@@ -11,7 +11,7 @@ export default function CatalogPage() {
 
   useEffect(() => {
     fetchVehicles(true);
-  }, [fetchVehicles]);
+  }, []);
 
   return (
     <section className={css.catalogSection}>
