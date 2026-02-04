@@ -1,0 +1,54 @@
+/* test */
+.formCard {
+  padding: 40px;
+  border: 1px solid rgba(18, 20, 23, 0.05);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: rgba(18, 20, 23, 0.5);
+  margin-bottom: 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input, .textarea {
+  padding: 14px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #f7f7fb;
+  font-size: 16px;
+}
+
+.textarea {
+  height: 120px;
+  resize: none;
+}
+
+.sendBtn {
+  margin-top: 10px;
+  padding: 14px;
+  background-color: #3470ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer; 
+  transition: background 0.3s;
+}
+
+.sendBtn:hover {
+  background-color: #0b44cd;
+}
+/* end test */
