@@ -3,13 +3,12 @@ import css from "./VehicleCard.module.css";
 import type { Vehicle } from "@/types/vehicle";
 import { useVehicleStore } from "@/store/useVehicleStore";
 import { formatMileage } from "@/lib/utils";
+import Link from "next/link";
 
 export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
   const { favorites, toggleFavorite } = useVehicleStore();
   const isFavorite = favorites.includes(vehicle.id);
-  const addressParts = vehicle.address.split(",");
-  const city = addressParts[1]?.trim();
-  const country = addressParts[2]?.trim();
+
   return (
     <div className={css.card}>
       <div className={css.imageWrapper}>
@@ -27,7 +26,7 @@ export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
         >
           <svg width="16" height="15" className={css.icon}>
             <use
-              href={isFavorite ? "/Icoms.svg#Love-blue" : "/Icoms.svg#Love"}
+              href={isFavorite ? "/Icons.svg#Love-blue" : "/Icons.svg#Love"}
             ></use>
           </svg>
         </button>
@@ -56,7 +55,9 @@ export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
           </div>
         </div>
       </div>
-      <button className={css.btn}>Read more</button>
+      <Link href={`/catalog/${vehicle.id}`} className={css.link}>
+        <button className={css.btn}>Read more</button>
+      </Link>
     </div>
   );
 };

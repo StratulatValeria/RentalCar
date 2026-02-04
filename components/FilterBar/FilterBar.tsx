@@ -12,7 +12,7 @@ const CustomIndicator = (
   return (
     <components.DropdownIndicator {...props}>
       <svg width="13" height="7">
-        <use href={`/Icoms.svg#${isOpen ? "Up" : "Down"}`}></use>
+        <use href={`/Icons.svg#${isOpen ? "Up" : "Down"}`}></use>
       </svg>
     </components.DropdownIndicator>
   );

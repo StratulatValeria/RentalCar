@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Shared/Header/Header";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -30,7 +30,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${manrope.variable} ${inter.variable}`}>
         <Header />
-        <main> {children}
+        <main>
+          {" "}
+          {children}
           <ToastContainer position="top-right" autoClose={3000} />
         </main>
       </body>

@@ -3,3 +3,10 @@ export const formatMileage = (mileage: number): string => {
   if (isNaN(value)) return "0";
   return value.toLocaleString("ru-RU").replace(",", ".");
 };
+
+export const formatId = (id: string): string => {
+  if (!id) return "";
+
+  const numbersOnly = id.replace(/\D/g, "");
+  return numbersOnly.slice(0, 4);
+};
