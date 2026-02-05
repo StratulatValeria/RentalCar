@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { formatId } from "@/lib/utils";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Loader from "../Loader/Loader";
 
 interface CustomInputProps extends HTMLProps<HTMLInputElement> {
   value?: string;
@@ -19,7 +20,7 @@ const CustomDateInput = forwardRef<HTMLInputElement, CustomInputProps>(
       value={value}
       onClick={onClick}
       placeholder={placeholder}
-      onChange={() => {}}
+      readOnly
       ref={ref}
       className={css.input}
       required={required}
@@ -29,14 +30,16 @@ const CustomDateInput = forwardRef<HTMLInputElement, CustomInputProps>(
 );
 
 CustomDateInput.displayName = "CustomDateInput";
+
 export const BookingForm = ({ carId }: { carId: string }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     bookingDate: "",
     comment: "",
   });
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.bookingDate) {
@@ -45,22 +48,39 @@ export const BookingForm = ({ carId }: { carId: string }) => {
       });
       return;
     }
+    setIsSubmitting(true);
 
-    toast.success(
-      `Success! Car (ID: ${formatId(carId)}) has been booked for ${formData.name}.`,
-      {
-        theme: "colored",
-      },
-    );
-    setFormData({ name: "", email: "", bookingDate: "", comment: "" });
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      toast.success(
+        `Success! Car (ID: ${formatId(carId)}) has been booked for ${formData.name}.`,
+        {
+          theme: "colored",
+        },
+      );
+      setFormData({ name: "", email: "", bookingDate: "", comment: "" });
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <div className={css.formCard}>
+      {isSubmitting && <Loader />}
       <h3 className={css.title}>Book your car now</h3>
       <p className={css.subtitle}>
         Stay connected! We are always ready to help you.
       </p>
-      <form onSubmit={handleSubmit} className={css.form}>
+      <form
+        onSubmit={handleSubmit}
+        className={css.form}
+        style={{
+          opacity: isSubmitting ? 0.3 : 1,
+          pointerEvents: isSubmitting ? "none" : "all",
+        }}
+      >
         <input
           type="text"
           placeholder=" Name*"
@@ -95,8 +115,11 @@ export const BookingForm = ({ carId }: { carId: string }) => {
             formatWeekDay={(name) => name.substring(0, 3).toUpperCase()}
             placeholderText="Booking date*"
             dateFormat="dd.MM.yyyy"
+            popperPlacement="bottom-end"
             showPopperArrow={true}
+            shouldCloseOnSelect={false}
             customInput={<CustomDateInput required={true} />}
+            portalId="root-portal"
             required
           />
         </div>
@@ -109,8 +132,8 @@ export const BookingForm = ({ carId }: { carId: string }) => {
           }
           className={css.textarea}
         />
-        <button type="submit" className={css.sendBtn}>
-          Send
+        <button type="submit" className={css.sendBtn} disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send"}
         </button>
       </form>
     </div>

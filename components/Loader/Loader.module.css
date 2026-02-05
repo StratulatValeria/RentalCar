@@ -1,0 +1,180 @@
+.loadingWindow {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 3px solid #3470ff;
+  color: #3470ff;
+  height: 200px;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -100px;
+  position: fixed;
+  top: 50%;
+  width: 300px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.car {
+  position: relative;
+  width: 117px;
+  height: 42px;
+}
+
+.strike {
+  position: absolute;
+  width: 11px;
+  height: 1px;
+  background: #3470ff;
+  animation: strikes 0.2s linear infinite;
+}
+
+.strike2 {
+  top: 11px;
+  animation-delay: 0.05s;
+}
+.strike3 {
+  top: 22px;
+  animation-delay: 0.1s;
+}
+.strike4 {
+  top: 33px;
+  animation-delay: 0.15s;
+}
+.strike5 {
+  top: 44px;
+  animation-delay: 0.2s;
+}
+
+.carDetail {
+  position: absolute;
+  display: block;
+  background: #3470ff;
+  animation: speed 0.5s linear infinite;
+}
+
+.spoiler {
+  width: 0;
+  height: 0;
+  top: 7px;
+  background: none;
+  border: 20px solid transparent;
+  border-bottom: 8px solid #3470ff;
+  border-left: 20px solid #3470ff;
+}
+
+.back {
+  height: 20px;
+  width: 92px;
+  top: 15px;
+  left: 0px;
+}
+
+.center {
+  height: 35px;
+  width: 75px;
+  left: 12px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 45px 40px;
+  border: 4px solid #3470ff;
+  background: none;
+  box-sizing: border-box;
+}
+
+.center1 {
+  height: 35px;
+  width: 35px;
+  left: 12px;
+  border-top-left-radius: 30px;
+}
+
+.front {
+  height: 20px;
+  width: 50px;
+  top: 15px;
+  left: 67px;
+  border-top-right-radius: 50px 40px;
+  border-bottom-right-radius: 10px;
+}
+
+.wheel {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: 20px;
+  left: 12px;
+  border: 3px solid #ffffff;
+  background:
+    linear-gradient(
+      45deg,
+      transparent 45%,
+      #3470ff 46%,
+      #3470ff 54%,
+      transparent 55%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 45%,
+      #3470ff 46%,
+      #3470ff 54%,
+      transparent 55%
+    ),
+    radial-gradient(#3470ff 29%, transparent 30%, transparent 50%, #3470ff 51%),
+    #ffffff;
+  animation: spin 0.5s linear infinite;
+}
+
+.wheel2 {
+  left: 82px;
+}
+
+.text {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.dots {
+  display: inline-block;
+  width: 15px;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: dots 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes speed {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-1px, 3px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+}
+@keyframes strikes {
+  from {
+    left: 25px;
+  }
+  to {
+    left: -80px;
+    opacity: 0;
+  }
+}
+@keyframes dots {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 15px;
+  }
+}

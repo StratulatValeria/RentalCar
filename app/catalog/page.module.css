@@ -41,3 +41,15 @@
   color: var(--button-hover);
   transition: color 250ms ease;
 }
+.centeredLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px; 
+}
+
+.bottomLoader {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}

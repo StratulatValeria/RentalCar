@@ -5,7 +5,7 @@
   background: #fff;
   max-height: 488px;
   max-width: 640px;
-  margin-bottom: 104px;
+  /* margin-bottom: 104px; */
 }
 
 .title {
@@ -142,4 +142,28 @@
 :global(.react-datepicker__navigation-icon--previous::before) {
   border-color: #3470ff !important;
   border-width: 2px 2px 0 0 !important;
+}
+:global(.react-datepicker-popper) {
+  margin-top: 12px !important;
+}
+
+:global(.react-datepicker__triangle) {
+  left: 20px !important;
+}
+
+:global(.react-datepicker__header__triangle::before),
+:global(.react-datepicker__header__triangle::after),
+:global(.react-datepicker__triangle::before),
+:global(.react-datepicker__triangle::after) {
+  border-bottom-color: #3470ff !important;
+  border-top-color: #3470ff !important;
+}
+:global(.react-datepicker__header__triangle::after),
+:global(.react-datepicker__triangle::after) {
+  border-bottom-color: #fff !important;
+  border-top-color: #fff !important;
+}
+:global(.react-datepicker__triangle) {
+  background-color: transparent !important;
+  border: none !important;
 }

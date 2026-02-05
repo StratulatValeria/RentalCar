@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Rental Car - Car Rental Service
+This is a web application for searching and booking rental cars in Ukraine. Built with performance and scalability in mind using modern web technologies.
 
-## Getting Started
+🚀 Tech Stack
+Framework: Next.js (App Router)
 
-First, run the development server:
+Language: TypeScript
 
-```bash
+State Management: Zustand (with Persistence)
+
+API Client: Axios
+
+Styling: CSS Modules
+
+UI Components: React-Select, React-DatePicker
+
+🛠 Key Features
+Catalog Page: Explore a wide range of vehicles with server-side pagination.
+
+Advanced Filtering: Filter cars by brand, rental price, and mileage (handled on the backend).
+
+Favorites System: Save your favorite cars to a list that persists even after page reloads.
+
+Dynamic Details Page: View full specifications, accessories, and rental conditions for each vehicle.
+
+Booking Form: Integrated rental form with successful submission notifications.
+
+📦 Installation & Setup
+Clone the repository:
+
+Bash
+git clone [repository-url]
+Install dependencies:
+
+Bash
+npm install
+Run the development server:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+/////////////////////////////////////////////////////////////////////////////
+🇺🇦 Про проект: Rental Car
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Цей проект — це сучасна платформа для оренди автомобілів, розроблена як тестове завдання. Основна мета — створити швидкий, зручний та інтуїтивно зрозумілий інтерфейс для користувачів, які шукають авто для подорожей чи бізнесу.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🛠 Технічні особливості та архітектурні рішення:
+Next.js & App Router: Використано сучасну маршрутизацію для швидкого перемикання між сторінками (/, /catalog, /catalog/:id) та оптимізації завантаження контенту.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Державне управління з Zustand: Реалізовано глобальне сховище для керування списком транспортних засобів, фільтрами та списком обраних.
 
-## Learn More
+Persistence (LocalStorage): Завдяки middleware persist, ваші обрані автомобілі залишаються в пам'яті браузера навіть після повного оновлення сторінки або закриття вкладки.
 
-To learn more about Next.js, take a look at the following resources:
+Оптимізація запитів: Фільтрація та пагінація ("Load More") реалізовані на стороні бекенда через параметри запиту Axios, що забезпечує актуальність даних та високу продуктивність фронтенду.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Валідація та Форматування: Пробіг автомобіля автоматично форматується з роздільником (наприклад, 5 000 km), а ціна відображається у зручному форматі згідно з дизайном.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🎨 Дизайн та UX:
+Верстка виконана у точній відповідності до макету Figma.
 
-## Deploy on Vercel
+Реалізовано інтерактивні елементи: зміна стану кнопок при наведенні (cursor: pointer), анімовані випадаючі списки та модальні вікна.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Додано loading.tsx для відображення стану завантаження під час асинхронних запитів, що покращує користувацький досвід.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📂 Структура проекту:
+app/ — маршрутизація та сторінки додатка.
+
+components/ — перевикористовувані UI-компоненти (Card, FilterBar, BookingForm).
+
+store/ — глобальний стан додатка (Zustand).
+
+lib/ — сервіси для роботи з API та допоміжні утиліти.
+
+**Автор:** <Stratulat Valeria>
+**Live Demo:** []
