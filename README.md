@@ -71,4 +71,4 @@ store/ — глобальний стан додатка (Zustand).
 lib/ — сервіси для роботи з API та допоміжні утиліти.
 
 **Автор:** <Stratulat Valeria>
-**Live Demo:** []
+**Live Demo:** [https://rental-car-nu-amber.vercel.app/]
