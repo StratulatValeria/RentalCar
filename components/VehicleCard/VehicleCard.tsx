@@ -10,7 +10,7 @@ export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
   const isFavorite = favorites.includes(vehicle.id);
 
   return (
-    <div className={css.card}>
+    <article className={css.card}>
       <div className={css.imageWrapper}>
         <Image
           src={vehicle.img}
@@ -23,8 +23,10 @@ export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
           type="button"
           className={css.favoriteBtn}
           onClick={() => toggleFavorite(vehicle.id)}
+          aria-pressed={isFavorite}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
         >
-          <svg width="16" height="15" className={css.icon}>
+          <svg width="16" height="15" className={css.icon} aria-hidden="true">
             <use
               href={isFavorite ? "/Icons.svg#Love-blue" : "/Icons.svg#Love"}
             ></use>
@@ -55,9 +57,9 @@ export const VehicleCard = ({ vehicle }: { vehicle: Vehicle }) => {
           </div>
         </div>
       </div>
-      <Link href={`/catalog/${vehicle.id}`} className={css.link}>
-        <button className={css.btn}>Read more</button>
+      <Link href={`/catalog/${vehicle.id}`} className={css.btn}>
+        Read more
       </Link>
-    </div>
+    </article>
   );
 };

@@ -20,7 +20,6 @@
   color: var(--gray);
 }
 
-
 .mileageInputs {
   display: flex;
   align-items: center;
@@ -43,7 +42,7 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--main);
-  padding-left: 70px;
+  padding-left: 24px;
   padding-right: 15px;
 }
 
@@ -67,15 +66,16 @@
 }
 
 .searchBtn {
-  height: 48px;
-  padding: 14px 44px;
   background-color: var(--button);
   color: var(--white);
-  border-radius: 12px;
   border: none;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
+  border-radius: 12px;
+  padding: 12px 51px;
+  width: 156px;
+  height: 44px;
 }
 
 .searchBtn:hover {

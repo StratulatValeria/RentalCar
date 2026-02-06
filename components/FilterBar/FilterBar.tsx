@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, useEffect } from "react";
 import Select, { components, DropdownIndicatorProps } from "react-select";
 import { useVehicleStore } from "@/store/useVehicleStore";
 import { customStyles, SelectOption } from "./SelectConfig";
@@ -19,7 +19,7 @@ const CustomIndicator = (
 };
 
 export const FilterBar = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = typeof window !== "undefined";
   const {
     allBrands,
     maxPriceInRange,
@@ -29,10 +29,7 @@ export const FilterBar = () => {
   } = useVehicleStore();
 
   useEffect(() => {
-    setIsMounted(true);
-
     fetchFilterMetadata();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fetchFilterMetadata]);
 
   const brands = useMemo(() => {
@@ -97,12 +94,14 @@ export const FilterBar = () => {
           <input
             type="text"
             placeholder="From"
+            aria-label="Mileage from"
             onChange={(e) => setFilter("mileageFrom", e.target.value)}
             className={css.inputLeft}
           />
           <input
             type="text"
             placeholder="To"
+            aria-label="Mileage to"
             onChange={(e) => setFilter("mileageTo", e.target.value)}
             className={css.inputRight}
           />

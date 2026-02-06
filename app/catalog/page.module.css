@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-.container {
+.catalogContainer {
   width: 100%;
   max-width: 1216px;
   padding: 0 15px;
@@ -45,11 +45,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 400px; 
+  min-height: 400px;
 }
 
 .bottomLoader {
   display: flex;
   justify-content: center;
   padding: 20px 0;
+}
+.noResults {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #8a8a89;
+  font-family: "Inter", sans-serif;
 }

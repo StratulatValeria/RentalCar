@@ -20,7 +20,7 @@ const CustomDateInput = forwardRef<HTMLInputElement, CustomInputProps>(
       value={value}
       onClick={onClick}
       placeholder={placeholder}
-      readOnly
+      onChange={() => {}}
       ref={ref}
       className={css.input}
       required={required}
@@ -42,12 +42,6 @@ export const BookingForm = ({ carId }: { carId: string }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.bookingDate) {
-      toast.error("Please select a booking date!", {
-        theme: "colored",
-      });
-      return;
-    }
     setIsSubmitting(true);
 
     try {
@@ -113,14 +107,14 @@ export const BookingForm = ({ carId }: { carId: string }) => {
             minDate={new Date()}
             calendarStartDay={1}
             formatWeekDay={(name) => name.substring(0, 3).toUpperCase()}
-            placeholderText="Booking date*"
+            placeholderText="Booking date"
             dateFormat="dd.MM.yyyy"
             popperPlacement="bottom-end"
             showPopperArrow={true}
             shouldCloseOnSelect={false}
-            customInput={<CustomDateInput required={true} />}
-            portalId="root-portal"
-            required
+            calendarClassName={css.customCalendar}
+            dayClassName={() => css.customDay}
+            customInput={<CustomDateInput />}
           />
         </div>
 

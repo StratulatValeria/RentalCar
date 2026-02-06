@@ -26,11 +26,19 @@ export default function CatalogPage() {
 
   return (
     <section className={css.catalogSection}>
-      <div className={css.container}>
+      <div className={css.catalogContainer}>
         <FilterBar />
         {isLoading && vehicles.length === 0 && (
           <div className={css.centeredLoader}>
             <Loader />
+          </div>
+        )}
+        {!isLoading && vehicles.length === 0 && (
+          <div className={css.noResults}>
+            <p>
+              No cars found matching your filters. Try changing your search
+              criteria!
+            </p>
           </div>
         )}
         <div className={css.grid}>
@@ -45,8 +53,12 @@ export default function CatalogPage() {
           </div>
         )}
         {hasMore && !isLoading && (
-          <button className={css.loadMoreBtn} onClick={handleLoadMore}>
-            Load More
+          <button
+            className={css.loadMoreBtn}
+            onClick={handleLoadMore}
+            disabled={isLoadingMore}
+          >
+            {isLoadingMore ? "Loading..." : "Load More"}
           </button>
         )}
       </div>
