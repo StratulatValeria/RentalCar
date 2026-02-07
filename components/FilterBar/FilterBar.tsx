@@ -101,26 +101,6 @@ export const FilterBar = () => {
         />
       </div>
 
-      {/* <div className={css.filterGroup}>
-        <label className={css.label}>Car mileage / km</label>
-        <div className={css.mileageInputs}>
-          <input
-            type="text"
-            placeholder="From"
-            aria-label="Mileage from"
-            onChange={(e) => setFilter("mileageFrom", e.target.value)}
-            className={css.inputLeft}
-          />
-          <input
-            type="text"
-            placeholder="To"
-            aria-label="Mileage to"
-            onChange={(e) => setFilter("mileageTo", e.target.value)}
-            className={css.inputRight}
-          />
-        </div>
-      </div> */}
-
       <div className={css.filterGroup}>
         <label className={css.label}>Car mileage / km</label>
         <div className={css.mileageInputs}>
