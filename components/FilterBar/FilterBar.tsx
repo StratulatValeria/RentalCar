@@ -18,6 +18,11 @@ const CustomIndicator = (
   );
 };
 
+const formatNumber = (val: string | number | undefined) => {
+  if (!val) return "";
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+};
+
 export const FilterBar = () => {
   const isMounted = typeof window !== "undefined";
   const {
@@ -26,6 +31,7 @@ export const FilterBar = () => {
     fetchFilterMetadata,
     fetchVehicles,
     setFilter,
+    filters,
   } = useVehicleStore();
 
   useEffect(() => {
@@ -47,6 +53,13 @@ export const FilterBar = () => {
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
     fetchVehicles(true);
+  };
+  const handleMileageChange = (
+    key: "mileageFrom" | "mileageTo",
+    value: string,
+  ) => {
+    const rawValue = value.replace(/\D/g, "");
+    setFilter(key, rawValue);
   };
 
   if (!isMounted) {
@@ -88,7 +101,7 @@ export const FilterBar = () => {
         />
       </div>
 
-      <div className={css.filterGroup}>
+      {/* <div className={css.filterGroup}>
         <label className={css.label}>Car mileage / km</label>
         <div className={css.mileageInputs}>
           <input
@@ -106,8 +119,36 @@ export const FilterBar = () => {
             className={css.inputRight}
           />
         </div>
-      </div>
+      </div> */}
 
+      <div className={css.filterGroup}>
+        <label className={css.label}>Car mileage / km</label>
+        <div className={css.mileageInputs}>
+          <div className={css.inputWrapper}>
+            <span className={css.prefix}>From</span>
+            <input
+              type="text"
+              aria-label="Mileage from"
+              value={formatNumber(filters.mileageFrom)}
+              onChange={(e) =>
+                handleMileageChange("mileageFrom", e.target.value)
+              }
+              className={css.inputLeft}
+            />
+          </div>
+
+          <div className={css.inputWrapper}>
+            <span className={css.prefix}>To</span>
+            <input
+              type="text"
+              aria-label="Mileage to"
+              value={formatNumber(filters.mileageTo)}
+              onChange={(e) => handleMileageChange("mileageTo", e.target.value)}
+              className={css.inputRight}
+            />
+          </div>
+        </div>
+      </div>
       <button type="submit" className={css.searchBtn}>
         Search
       </button>

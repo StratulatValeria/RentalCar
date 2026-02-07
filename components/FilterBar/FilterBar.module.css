@@ -42,8 +42,7 @@
   font-size: 16px;
   line-height: 125%;
   color: var(--main);
-  padding-left: 24px;
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 .inputLeft {
@@ -99,4 +98,26 @@
 }
 .selectPrice {
   width: 125px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.prefix {
+  position: absolute;
+  left: 18px;
+  font-size: 18px;
+  color: #121417;
+  pointer-events: none;
+}
+
+.inputLeft {
+  padding-left: 70px !important;
+}
+
+.inputRight {
+  padding-left: 45px !important;
 }

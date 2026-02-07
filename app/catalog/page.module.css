@@ -38,7 +38,7 @@
 
 .loadMoreBtn:hover,
 .loadMoreBtn:focus {
-  color: var(--button-hover);
+  border-color: var(--button-hover);
   transition: color 250ms ease;
 }
 .centeredLoader {
